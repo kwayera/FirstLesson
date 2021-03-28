@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0;
+    outline: 0;
+}
+// адаптация под мобильное устройство, планшет, пк
+
+@mixin adaptive($media) {
+    @if $media == smart {
+        @media only screen and (max-width: 480px) {@content}
+                        }
+                        
+    @else if $media == tablet {
+        @media only screen and (min-width: 481px) and (max-width: 1024px) {@content}
+                                }
+
+    @else if $media == pc {
+        @media only screen and (min-width: 1025px) {@content}
+                            }
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background: red;
+    // Чтобы прописать мобильную версию достаточно прописать:
+    @include adaptive(smart) {
+        width: 100%;
+        background-color: orchid;
+
+        &:active {
+            background-color: paleturquoise;
+        }
+    }
+
+   @include adaptive(tablet) {
+       width: 100%;
+       background-color: blue;   
+       }
+    }
+
+
